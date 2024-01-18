@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+     <link rel="apple-touch-icon" href="favicon.ico">
     <style>
         body {
             margin: 0;
@@ -88,17 +89,19 @@
 </head>
 <body>
     <div class="bar">
-        <h1>Task-List ( ˶ˆ꒳ˆ˵ )</h1>
+        <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
     </div>
+    <h1>Essa ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
+    <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
     <div class="parent">
         <div class="div1">
-            <h2 style="color: #333;">To do</h2>
-            <input type="text" id="taskInput" class="task-input" placeholder="Enter a task">
-            <button onclick="addTask()">Add Task</button>
+            <h2 style="color: #333;">Para Fazer</h2>
+            <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
+            <button onclick="addTask()">Adicionar tarefa</button>
             <ul id="todoList" class="task-list"></ul>
         </div>
         <div class="div2">
-            <h2 style="color: #333;">Done</h2>
+            <h2 style="color: #333;">Tarefas Concluídas</h2>
             <ul id="doneList" class="task-list"></ul>
         </div>
     </div>
