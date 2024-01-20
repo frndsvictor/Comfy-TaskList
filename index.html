@@ -111,6 +111,13 @@
             margin-right: 8px;
         }
 
+        .saved-lists input {
+            padding: 8px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            margin-right: 8px;
+        }
+
         .saved-lists button {
             padding: 8px;
             background-color: #007bff;
@@ -221,7 +228,7 @@
         }
 
         function onSaveList() {
-            var listName = prompt("Digite o nome da lista:");
+            var listName = document.getElementById("listName").value;
             if (listName) {
                 saveList(listName);
             }
@@ -231,7 +238,9 @@
             var savedLists = JSON.parse(localStorage.getItem("savedLists")) || [];
             savedLists.push(listName);
             localStorage.setItem("savedLists", JSON.stringify(savedLists));
-            saveTasks();
+            var todoList = document.getElementById("todoList").innerHTML;
+            var doneList = document.getElementById("doneList").innerHTML;
+            localStorage.setItem(listName, JSON.stringify({ todo: todoList, done: doneList }));
             loadSavedLists();
         }
 
