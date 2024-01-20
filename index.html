@@ -110,6 +110,7 @@
         <div class="div2">
             <h2 style="color: #333;">Tarefas Concluídas</h2>
             <ul id="doneList" class="task-list"></ul>
+            <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
         </div>
     </div>
 <script>
@@ -164,6 +165,18 @@
             todoList.appendChild(taskItem);
         }
 
+        function completeSelectedTasks() {
+            var todoList = document.getElementById("todoList");
+            var doneList = document.getElementById("doneList");
+
+            var selectedTasks = todoList.querySelectorAll('.task input[type="checkbox"]:checked');
+
+            selectedTasks.forEach(function(taskCheckbox) {
+                var taskItem = taskCheckbox.closest('.task');
+                moveTaskToDone(taskItem);
+            });
+        }
+
         function saveTasks() {
             var todoList = document.getElementById("todoList");
             var doneList = document.getElementById("doneList");
@@ -211,4 +224,3 @@
     <p><a href="tutorial.html">Aprenda a adicionar este site em seu celular como um aplicativo.</a></p>
 </body>
 </html>
-    
