@@ -15,16 +15,13 @@
     <link rel="apple-touch-icon" href="favicon.ico">
     <style>
         body {
-        margin: 0;
-        font-family: 'Montserrat', sans-serif;
-        background-color: #f0f0f0;
-        transition: background-color 0.5s, color 0.5s;
-        }
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    transition: background-color 0.5s, color 0.5s;
+}
 
-        body:not(.theme-transition) {
-        transition: none;
-        }
-        body.theme1 {
+body.theme1 {
     background-color: #f8d7da;
     color: #721c24;
 }
@@ -59,7 +56,7 @@ body.theme7 {
     color: #333333; /* Black */
 }
 
-        .bar,
+.bar,
 .theme-button,
 button {
     transition: background-color 0.5s, color 0.5s;
@@ -96,12 +93,12 @@ button {
 
 .div1,
 .div2,
-.saved-lists,
-.saved-lists select,
-.saved-lists button {
+.saved-lists {
     background-color: #ffffff;
     border: 1px solid #dcdcdc;
     border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
 }
 
 .task-input {
@@ -160,6 +157,31 @@ h1,
 p {
     text-align: center;
     font-size: medium;
+}
+
+.saved-lists select {
+    padding: 14px 8px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    width: calc(100% - 20px);
+    font-size: small;
+}
+
+.saved-lists button {
+    background-color: #6a737d; /* Battleship Gray */
+    color: #ffffff;
+    cursor: pointer;
+    padding: 14px 8px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    width: calc(100% - 20px);
+    font-size: small;
+}
+
+.saved-lists button:hover {
+    background-color: #495057; /* Darker Battleship Gray on hover */
 }
 
 .more-info {
