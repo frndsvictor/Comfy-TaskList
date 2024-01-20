@@ -15,182 +15,191 @@
     <link rel="apple-touch-icon" href="favicon.ico">
     <style>
         body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f0f0f0;
-    transition: background-color 0.5s, color 0.5s;
-}
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            transition: background-color 0.5s, color 0.5s;
+        }
 
-body.theme1 {
-    background-color: #f8d7da;
-    color: #721c24;
-}
+        body.theme1 {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
 
-body.theme2 {
-    background-color: #d1ecf1;
-    color: #0c5460;
-}
+        body.theme2 {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
 
-body.theme3 {
-    background-color: #faf0e6; /* Linen */
-    color: #333333; /* Black */
-}
+        body.theme3 {
+        background-color: #fdf5e6; /* Old Lace */
+        color: #333333; /* Black */
+        }
 
-body.theme4 {
-    background-color: #f0f8ff; /* Alice Blue */
-    color: #2e2e2e; /* Dark Gray */
-}
+        body.theme4 {
+        background-color: #f5f5f5; /* White Smoke */
+        color: #2e2e2e; /* Dark Gray */
+        }
 
-body.theme5 {
-    background-color: #add8e6; /* Light Blue */
-    color: #333333; /* Black */
-}
+        body.theme5 {
+        background-color: #e6f7ff; /* Baby Blue */
+        color: #333333; /* Black */
+        }
 
-body.theme6 {
-    background-color: #fffacd; /* Lemon Chiffon */
-    color: #2e2e2e; /* Dark Gray */
-}
+        body.theme6 {
+        background-color: #fffaf0; /* Floral White */
+        color: #2e2e2e; /* Dark Gray */
+        }
 
-body.theme7 {
-    background-color: #f5fffa; /* Mint Cream */
-    color: #333333; /* Black */
-}
+        body.theme7 {
+        background-color: #f0fff4; /* Honeydew */
+        color: #333333; /* Black */
+        }
+        
 
-.bar,
-.theme-button,
-button {
-    transition: background-color 0.5s, color 0.5s;
-}
+        .bar,
+        .theme-button,
+        button {
+            transition: background-color 0.5s, color 0.5s;
+        }
 
-.bar {
-    text-align: center;
-    background-color: #ffffff;
-    padding: 10px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-}
+        .bar {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 10px;
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.theme-button {
-    background-color: #6a737d; /* Battleship Gray */
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: small;
-    padding: 8px;
-    margin-right: 10px;
-}
+        .theme-button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: small;
+            padding: 8px;
+            margin-right: 10px;
+        }
 
-.theme-button:hover {
-    background-color: #495057; /* Darker Battleship Gray on hover */
-}
+        .theme-button:hover {
+            background-color: #0056b3;
+        }
 
-.parent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-}
+        .parent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
 
-.div1,
-.div2,
-.saved-lists {
-    background-color: #ffffff;
-    border: 1px solid #dcdcdc;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 10px;
-}
+        .div1,
+        .div2 {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow-y: auto;
+        }
 
-.task-input {
-    width: calc(100% - 20px);
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #dcdcdc;
-    border-radius: 5px;
-}
+        .task-input {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+        }
 
-.task-list {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-}
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
 
-.task {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
+        .task {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
 
-.task-checkbox {
-    margin-right: 10px;
-}
+        .task-checkbox {
+            margin-right: 10px;
+        }
 
-.button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
-button {
-    flex-basis: calc(48% - 8px);
-    padding: 14px 8px;
-    background-color: #6a737d; /* Battleship Gray */
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 8px;
-    font-size: small;
-}
+        button {
+            flex-basis: calc(48% - 8px);
+            padding: 14px 8px; /* Adjusted padding for better height */
+            background-color: #007bff; /* Blue color */
+            color: #ffffff;
+            border: none;
+            border-radius: 8px; /* Increased border radius for a softer look */
+            cursor: pointer;
+            margin-bottom: 8px;
+            font-size: small; /* Adjusted font size */
+        }
 
-button:hover {
-    background-color: #495057; /* Darker Battleship Gray on hover */
-}
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
 
-h2 {
-    text-align: center;
-    color: #333;
-}
+        h2 {
+            text-align: center;
+            color: #333;
+        }
 
-h1,
-p {
-    text-align: center;
-    font-size: medium;
-}
+        h1,
+        p {
+            text-align: center;
+            font-size: medium;
+        }
 
-.saved-lists select {
-    padding: 14px 8px;
-    border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    width: calc(100% - 20px);
-    font-size: small;
-}
+        .saved-lists {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow-y: auto;
+        }
 
-.saved-lists button {
-    background-color: #6a737d; /* Battleship Gray */
-    color: #ffffff;
-    cursor: pointer;
-    padding: 14px 8px;
-    border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    width: calc(100% - 20px);
-    font-size: small;
-}
+        .saved-lists select,
+        .saved-lists button {
+            padding: 14px 8px; /* Adjusted padding for better height */
+            border: 1px solid #dcdcdc;
+            border-radius: 8px; /* Increased border radius for a softer look */
+            margin-bottom: 8px;
+            width: 100%;
+            font-size: small; /* Adjusted font size */
+        }
 
-.saved-lists button:hover {
-    background-color: #495057; /* Darker Battleship Gray on hover */
-}
+        .saved-lists button {
+            background-color: #007bff; /* Blue color */
+            color: #ffffff;
+            cursor: pointer;
+        }
 
-.more-info {
-    display: none;
-}
+        .saved-lists button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
 
-.show-info {
-    display: block;
-}
+        .more-info {
+            display: none;
+        }
+
+        .show-info {
+            display: block;
+        }
 
     </style>
 </head>
@@ -363,7 +372,7 @@ p {
             // saveTasks();
         }
 
-       function toggleThemes() {
+function toggleThemes() {
     console.log("Toggling themes!");
 
     const themes = ["theme1", "theme2", "theme3", "theme4", "theme5", "theme6", "theme7"];
@@ -378,6 +387,8 @@ p {
     // Apply the new theme
     document.body.classList.add(themes[currentThemeIndex]);
 }
+
+
         window.addEventListener('unload', onUnload);
 
         loadTasks();
