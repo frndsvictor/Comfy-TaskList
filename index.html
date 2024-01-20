@@ -107,10 +107,11 @@
             <h2 style="color: #333;">Tarefas Concluídas</h2>
             <ul id="doneList" class="task-list"></ul>
         </div>
+        <button onclick="onManualSave()">Manual Save</button>
+<button onclick="onRemoveDoneTasks()">Remove Completed Tasks</button>
     </div>
 
     <script>
-<script>
     function addTask() {
         var taskInput = document.getElementById("taskInput");
         var todoList = document.getElementById("todoList");
@@ -132,7 +133,6 @@
             taskItem.appendChild(taskText);
             todoList.appendChild(taskItem);
 
-            saveTasks();
             taskInput.value = "";
         }
     }
@@ -155,16 +155,12 @@
 
         var todoList = document.getElementById("todoList");
         todoList.removeChild(taskItem);
-
-        saveTasks();
     }
 
     function moveTaskToTodo(taskItem) {
         var todoList = document.getElementById("todoList");
         taskItem.removeChild(taskItem.firstChild);
         todoList.appendChild(taskItem);
-
-        saveTasks();
     }
 
     function saveTasks() {
@@ -183,19 +179,20 @@
         doneList.innerHTML = localStorage.getItem("doneTasks") || "";
     }
 
-    function asyncSaveTasks() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                saveTasks();
-                resolve();
-            }, 0);
-        });
+    function onManualSave() {
+        saveTasks();
+        alert("Tasks saved successfully!");
+    }
+
+    function onRemoveDoneTasks() {
+        var doneList = document.getElementById("doneList");
+        doneList.innerHTML = ""; // Remove all completed tasks
+        saveTasks();
     }
 
     function onUnload() {
-        asyncSaveTasks().then(() => {
-            // Additional cleanup or actions if needed
-        });
+        // Optionally save tasks on page unload if needed
+        // saveTasks();
     }
 
     window.addEventListener('unload', onUnload);
