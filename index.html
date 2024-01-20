@@ -15,12 +15,15 @@
     <link rel="apple-touch-icon" href="favicon.ico">
     <style>
         body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f0f0f0;
-            transition: background-color 0.5s, color 0.5s;
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f0f0f0;
+        transition: background-color 0.5s, color 0.5s;
         }
 
+        body:not(.theme-transition) {
+        transition: none;
+        }
         body.theme1 {
             background-color: #f8d7da;
             color: #721c24;
@@ -372,16 +375,18 @@
             // saveTasks();
         }
 
-        function toggleThemes() {
-            console.log("Toggling themes!"); // Add this line
-            document.body.classList.toggle("theme1");
-            document.body.classList.toggle("theme2");
-            document.body.classList.toggle("theme3");
-            document.body.classList.toggle("theme4");
-            document.body.classList.toggle("theme5");
-            document.body.classList.toggle("theme6");
-            document.body.classList.toggle("theme7");
-        }
+       function toggleThemes() {
+    console.log("Toggling themes!");
+    document.body.classList.add("theme-transition");
+    document.body.classList.toggle("theme1");
+    document.body.classList.toggle("theme2");
+    document.body.classList.toggle("theme3");
+    document.body.classList.toggle("theme4");
+    document.body.classList.toggle("theme5");
+    document.body.classList.toggle("theme6");
+    document.body.classList.toggle("theme7");
+    setTimeout(() => document.body.classList.remove("theme-transition"), 500);
+}
 
         window.addEventListener('unload', onUnload);
 
