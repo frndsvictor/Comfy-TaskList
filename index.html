@@ -70,24 +70,20 @@
 
         .button-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
-            width: 100%;
             margin-bottom: 10px;
         }
 
         button {
-            flex: 1;
+            flex-basis: calc(25% - 8px);
             padding: 8px;
             background-color: #007bff;
             color: #ffffff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-right: 8px;
-        }
-
-        button:last-child {
-            margin-right: 0;
+            margin-bottom: 8px;
         }
 
         button:hover {
@@ -117,13 +113,13 @@
                 <button onclick="onManualSave()">Salvar Manualmente</button>
                 <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
                 <button onclick="onRemoveUndoneTasks()">Remover Tarefas Não Concluídas</button>
+                <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
             </div>
             <ul id="todoList" class="task-list"></ul>
         </div>
         <div class="div2">
             <h2 style="color: #333;">Tarefas Concluídas</h2>
             <ul id="doneList" class="task-list"></ul>
-            <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
         </div>
     </div>
 <script>
