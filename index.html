@@ -27,6 +27,21 @@
             box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
         }
 
+        .theme-button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: small;
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        .theme-button:hover {
+            background-color: #0056b3;
+        }
+
         .parent {
             display: flex;
             flex-direction: column;
@@ -80,7 +95,7 @@
         button {
             flex-basis: calc(48% - 8px);
             padding: 14px 8px; /* Adjusted padding for better height */
-            background-color: #f06292; /* Cute pink color */
+            background-color: #007bff; /* Blue color */
             color: #ffffff;
             border: none;
             border-radius: 8px; /* Increased border radius for a softer look */
@@ -90,7 +105,7 @@
         }
 
         button:hover {
-            background-color: #ec407a; /* Lighter pink on hover */
+            background-color: #0056b3; /* Darker blue on hover */
         }
 
         h2 {
@@ -125,13 +140,13 @@
         }
 
         .saved-lists button {
-            background-color: #f06292; /* Cute pink color */
+            background-color: #007bff; /* Blue color */
             color: #ffffff;
             cursor: pointer;
         }
 
         .saved-lists button:hover {
-            background-color: #ec407a; /* Lighter pink on hover */
+            background-color: #0056b3; /* Darker blue on hover */
         }
 
         .more-info {
@@ -146,6 +161,7 @@
 
 <body>
     <div class="bar">
+        <button class="theme-button" onclick="toggleThemes()">Toggle Color Themes</button>
         <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
     </div>
     <div class="parent">
@@ -311,14 +327,14 @@
             // saveTasks();
         }
 
+        function toggleThemes() {
+            document.body.classList.toggle("theme1");
+        }
+
         window.addEventListener('unload', onUnload);
 
         loadTasks();
         loadSavedLists();
     </script>
     <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
-    <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
-    <p><a href="tutorial.html">Aprenda a adicionar este site em seu celular como um aplicativo.</a></p>
-</body>
-
-</html>
+    <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com</p>
