@@ -68,15 +68,26 @@
             margin-right: 10px;
         }
 
-        button {
+        .button-container {
+            display: flex;
+            justify-content: space-between;
             width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            flex: 1;
             padding: 8px;
             background-color: #007bff;
             color: #ffffff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-bottom: 8px;
+            margin-right: 8px;
+        }
+
+        button:last-child {
+            margin-right: 0;
         }
 
         button:hover {
@@ -101,10 +112,12 @@
         <div class="div1">
             <h2 style="color: #333;">Para Fazer</h2>
             <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
-            <button onclick="addTask()">Adicionar tarefa</button>
-            <button onclick="onManualSave()">Salvar Manualmente</button>
-            <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
-            <button onclick="onRemoveUndoneTasks()">Remover Tarefas Não Concluídas</button>
+            <div class="button-container">
+                <button onclick="addTask()">Adicionar tarefa</button>
+                <button onclick="onManualSave()">Salvar Manualmente</button>
+                <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
+                <button onclick="onRemoveUndoneTasks()">Remover Tarefas Não Concluídas</button>
+            </div>
             <ul id="todoList" class="task-list"></ul>
         </div>
         <div class="div2">
