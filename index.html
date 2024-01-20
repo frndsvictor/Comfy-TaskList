@@ -14,10 +14,29 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.ico">
     <style>
+        /* ... existing styles ... */
+
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: #f0f0f0;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.theme1 {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        body.theme2 {
+            background-color: #cfe2f3;
+            color: #1d3887;
+        }
+
+        .bar,
+        .theme-button,
+        button {
+            transition: background-color 0.5s, color 0.5s;
         }
 
         .bar {
@@ -61,108 +80,14 @@
             overflow-y: auto;
         }
 
-        .task-input {
-            width: calc(100% - 20px);
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #dcdcdc;
-            border-radius: 5px;
-        }
-
-        .task-list {
-            list-style-type: none;
-            padding: 0;
-            text-align: left;
-        }
-
-        .task {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .task-checkbox {
-            margin-right: 10px;
-        }
-
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        button {
-            flex-basis: calc(48% - 8px);
-            padding: 14px 8px; /* Adjusted padding for better height */
-            background-color: #007bff; /* Blue color */
-            color: #ffffff;
-            border: none;
-            border-radius: 8px; /* Increased border radius for a softer look */
-            cursor: pointer;
-            margin-bottom: 8px;
-            font-size: small; /* Adjusted font size */
-        }
-
-        button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        h1,
-        p {
-            text-align: center;
-            font-size: medium;
-        }
-
-        .saved-lists {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            padding: 20px;
-            border: 1px solid #dcdcdc;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow-y: auto;
-        }
-
-        .saved-lists select,
-        .saved-lists button {
-            padding: 14px 8px; /* Adjusted padding for better height */
-            border: 1px solid #dcdcdc;
-            border-radius: 8px; /* Increased border radius for a softer look */
-            margin-bottom: 8px;
-            width: 100%;
-            font-size: small; /* Adjusted font size */
-        }
-
-        .saved-lists button {
-            background-color: #007bff; /* Blue color */
-            color: #ffffff;
-            cursor: pointer;
-        }
-
-        .saved-lists button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        .more-info {
-            display: none;
-        }
-
-        .show-info {
-            display: block;
-        }
+        /* ... existing styles ... */
     </style>
 </head>
 
 <body>
     <div class="bar">
-        <button class="theme-button" onclick="toggleThemes()">Toggle Color Themes</button>
         <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
+        <button class="theme-button" onclick="toggleThemes()">Toggle Color Themes</button>
     </div>
     <div class="parent">
         <div class="div1">
@@ -329,6 +254,7 @@
 
         function toggleThemes() {
             document.body.classList.toggle("theme1");
+            document.body.classList.toggle("theme2");
         }
 
         window.addEventListener('unload', onUnload);
@@ -338,3 +264,6 @@
     </script>
     <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
     <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com</p>
+</body>
+
+</html>
