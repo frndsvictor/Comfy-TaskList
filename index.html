@@ -110,6 +110,7 @@
     </div>
 
     <script>
+<script>
     function addTask() {
         var taskInput = document.getElementById("taskInput");
         var todoList = document.getElementById("todoList");
@@ -182,13 +183,26 @@
         doneList.innerHTML = localStorage.getItem("doneTasks") || "";
     }
 
-    function onBeforeUnload() {
-        saveTasks();
+    function asyncSaveTasks() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                saveTasks();
+                resolve();
+            }, 0);
+        });
     }
 
-    window.addEventListener('beforeunload', onBeforeUnload);
+    function onUnload() {
+        asyncSaveTasks().then(() => {
+            // Additional cleanup or actions if needed
+        });
+    }
+
+    window.addEventListener('unload', onUnload);
 
     loadTasks();
+</script>
+
     </script>
     <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
     <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
