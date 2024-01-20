@@ -110,7 +110,7 @@
     </div>
 
     <script>
-  function addTask() {
+    function addTask() {
         var taskInput = document.getElementById("taskInput");
         var todoList = document.getElementById("todoList");
 
@@ -186,17 +186,7 @@
         saveTasks();
     }
 
-    function onUnload() {
-        saveTasks();
-    }
-
-    window.addEventListener('beforeunload', function() {
-        setTimeout(onBeforeUnload, 0);
-    });
-
-    window.addEventListener('unload', function() {
-        setTimeout(onUnload, 0);
-    });
+    window.addEventListener('beforeunload', onBeforeUnload);
 
     loadTasks();
     </script>
