@@ -125,9 +125,6 @@
                 var checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
                 checkbox.className = "task-checkbox";
-                checkbox.onclick = function() {
-                    moveTaskToDone(taskItem);
-                };
 
                 var taskText = document.createTextNode(taskInput.value);
 
@@ -145,9 +142,6 @@
             var checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.className = "task-checkbox";
-            checkbox.onclick = function() {
-                moveTaskToTodo(taskItem);
-            };
 
             var clonedTaskItem = taskItem.cloneNode(true);
             clonedTaskItem.removeChild(clonedTaskItem.firstChild);
