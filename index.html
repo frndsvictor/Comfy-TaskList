@@ -160,134 +160,133 @@
         <button onclick="loadSavedList()">Carregar Lista</button>
     </div>
 <script>
-        function addTask() {
-            var taskInput = document.getElementById("taskInput");
-            var todoList = document.getElementById("todoList");
+           function addTask() {
+        var taskInput = document.getElementById("taskInput");
+        var todoList = document.getElementById("todoList");
 
-            if (taskInput.value.trim() !== "") {
-                var taskItem = document.createElement("li");
-                taskItem.className = "task";
-
-                var checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.className = "task-checkbox";
-
-                var taskText = document.createTextNode(taskInput.value);
-
-                taskItem.appendChild(checkbox);
-                taskItem.appendChild(taskText);
-                todoList.appendChild(taskItem);
-
-                taskInput.value = "";
-            }
-        }
-
-        function moveTaskToDone(taskItem) {
-            var doneList = document.getElementById("doneList");
+        if (taskInput.value.trim() !== "") {
+            var taskItem = document.createElement("li");
+            taskItem.className = "task";
 
             var checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.className = "task-checkbox";
 
-            var clonedTaskItem = taskItem.cloneNode(true);
-            clonedTaskItem.removeChild(clonedTaskItem.firstChild);
-            clonedTaskItem.insertBefore(checkbox, clonedTaskItem.firstChild);
+            var taskText = document.createTextNode(taskInput.value);
 
-            doneList.appendChild(clonedTaskItem);
+            taskItem.appendChild(checkbox);
+            taskItem.appendChild(taskText);
+            todoList.appendChild(taskItem);
 
-            var todoList = document.getElementById("todoList");
-            todoList.removeChild(taskItem);
+            taskInput.value = "";
         }
+    }
 
-        function completeSelectedTasks() {
-            var todoList = document.getElementById("todoList");
-            var doneList = document.getElementById("doneList");
+    function moveTaskToDone(taskItem) {
+        var doneList = document.getElementById("doneList");
 
-            var selectedTasks = todoList.querySelectorAll('.task input[type="checkbox"]:checked');
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "task-checkbox";
 
-            selectedTasks.forEach(function(taskCheckbox) {
-                var taskItem = taskCheckbox.closest('.task');
-                moveTaskToDone(taskItem);
-            });
+        var clonedTaskItem = taskItem.cloneNode(true);
+        clonedTaskItem.removeChild(clonedTaskItem.firstChild);
+        clonedTaskItem.insertBefore(checkbox, clonedTaskItem.firstChild);
+
+        doneList.appendChild(clonedTaskItem);
+
+        var todoList = document.getElementById("todoList");
+        todoList.removeChild(taskItem);
+    }
+
+    function completeSelectedTasks() {
+        var todoList = document.getElementById("todoList");
+        var doneList = document.getElementById("doneList");
+
+        var selectedTasks = todoList.querySelectorAll('.task input[type="checkbox"]:checked');
+
+        selectedTasks.forEach(function (taskCheckbox) {
+            var taskItem = taskCheckbox.closest('.task');
+            moveTaskToDone(taskItem);
+        });
+    }
+
+    function saveTasks() {
+        var todoList = document.getElementById("todoList");
+        var doneList = document.getElementById("doneList");
+
+        localStorage.setItem("todoTasks", todoList.innerHTML);
+        localStorage.setItem("doneTasks", doneList.innerHTML);
+    }
+
+    function loadTasks() {
+        var todoList = document.getElementById("todoList");
+        var doneList = document.getElementById("doneList");
+
+        todoList.innerHTML = localStorage.getItem("todoTasks") || "";
+        doneList.innerHTML = localStorage.getItem("doneTasks") || "";
+    }
+
+    function onSaveList() {
+        var listName = prompt("Digite o nome da lista:");
+        if (listName) {
+            saveList(listName);
         }
+    }
 
-        function saveTasks() {
-            var todoList = document.getElementById("todoList");
-            var doneList = document.getElementById("doneList");
-
-            localStorage.setItem("todoTasks", todoList.innerHTML);
-            localStorage.setItem("doneTasks", doneList.innerHTML);
-        }
-
-        function loadTasks() {
-            var todoList = document.getElementById("todoList");
-            var doneList = document.getElementById("doneList");
-
-            todoList.innerHTML = localStorage.getItem("todoTasks") || "";
-            doneList.innerHTML = localStorage.getItem("doneTasks") || "";
-        }
-
-        function onSaveList() {
-            var listName = document.getElementById("listName").value;
-            if (listName) {
-                saveList(listName);
-            }
-        }
-
-        function saveList(listName) {
-            var savedLists = JSON.parse(localStorage.getItem("savedLists")) || [];
-            savedLists.push(listName);
-            localStorage.setItem("savedLists", JSON.stringify(savedLists));
-            var todoList = document.getElementById("todoList").innerHTML;
-            var doneList = document.getElementById("doneList").innerHTML;
-            localStorage.setItem(listName, JSON.stringify({ todo: todoList, done: doneList }));
-            loadSavedLists();
-        }
-
-        function loadSavedLists() {
-            var savedLists = JSON.parse(localStorage.getItem("savedLists")) || [];
-            var savedListsSelect = document.getElementById("savedLists");
-
-            savedListsSelect.innerHTML = "";
-            savedLists.forEach(function(listName) {
-                var option = document.createElement("option");
-                option.value = listName;
-                option.textContent = listName;
-                savedListsSelect.appendChild(option);
-            });
-        }
-
-        function loadSavedList() {
-            var savedListsSelect = document.getElementById("savedLists");
-            var selectedListName = savedListsSelect.value;
-
-            if (selectedListName) {
-                var savedList = JSON.parse(localStorage.getItem(selectedListName));
-                if (savedList) {
-                    var todoList = document.getElementById("todoList");
-                    var doneList = document.getElementById("doneList");
-
-                    todoList.innerHTML = savedList.todo || "";
-                    doneList.innerHTML = savedList.done || "";
-                }
-            }
-        }
-
-        function onRemoveDoneTasks() {
-            var doneList = document.getElementById("doneList");
-            doneList.innerHTML = ""; // Remove all completed tasks
-            saveTasks();
-        }
-
-        function onUnload() {
-            // Optionally save tasks on page unload if needed
-            // saveTasks();
-        }
-
-        window.addEventListener('unload', onUnload);
-
-        loadTasks();
+    function saveList(listName) {
+        var todoList = document.getElementById("todoList").innerHTML;
+        var doneList = document.getElementById("doneList").innerHTML;
+        localStorage.setItem(listName, JSON.stringify({ todo: todoList, done: doneList }));
         loadSavedLists();
+    }
+
+    function loadSavedLists() {
+        var savedListsSelect = document.getElementById("savedLists");
+        savedListsSelect.innerHTML = "";
+
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key !== "todoTasks" && key !== "doneTasks") {
+                var option = document.createElement("option");
+                option.value = key;
+                option.textContent = key;
+                savedListsSelect.appendChild(option);
+            }
+        }
+    }
+
+    function loadSavedList() {
+        var savedListsSelect = document.getElementById("savedLists");
+        var selectedListName = savedListsSelect.value;
+
+        if (selectedListName) {
+            var savedList = JSON.parse(localStorage.getItem(selectedListName));
+            if (savedList) {
+                var todoList = document.getElementById("todoList");
+                var doneList = document.getElementById("doneList");
+
+                todoList.innerHTML = savedList.todo || "";
+                doneList.innerHTML = savedList.done || "";
+            }
+        }
+    }
+
+    function onRemoveDoneTasks() {
+        var doneList = document.getElementById("doneList");
+        doneList.innerHTML = ""; // Remove all completed tasks
+        saveTasks();
+    }
+
+    function onUnload() {
+        // Optionally save tasks on page unload if needed
+        // saveTasks();
+    }
+
+    window.addEventListener('unload', onUnload);
+
+    loadTasks();
+    loadSavedLists();
     </script>
     <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
     <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
