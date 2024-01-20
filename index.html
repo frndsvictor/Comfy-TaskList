@@ -59,14 +59,20 @@ body.theme7 {
     color: #333333; /* Black */
 }
 
-        .bar {
-            text-align: center;
-            background-color: #ffffff;
-            padding: 10px;
-            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-        }
+        .bar,
+.theme-button,
+button {
+    transition: background-color 0.5s, color 0.5s;
+}
 
-        .theme-button {
+.bar {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-button {
     background-color: #6a737d; /* Battleship Gray */
     color: #ffffff;
     border: none;
@@ -81,121 +87,88 @@ body.theme7 {
     background-color: #495057; /* Darker Battleship Gray on hover */
 }
 
-        .parent {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-        }
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
 
-        .div1,
-        .div2 {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            padding: 20px;
-            border: 1px solid #dcdcdc;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow-y: auto;
-        }
+.div1,
+.div2,
+.saved-lists,
+.saved-lists select,
+.saved-lists button {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+}
 
-        .task-input {
-            width: calc(100% - 20px);
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #dcdcdc;
-            border-radius: 5px;
-        }
+.task-input {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
 
-        .task-list {
-            list-style-type: none;
-            padding: 0;
-            text-align: left;
-        }
+.task-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
 
-        .task {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
+.task {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
 
-        .task-checkbox {
-            margin-right: 10px;
-        }
+.task-checkbox {
+    margin-right: 10px;
+}
 
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
 
-        button {
-            flex-basis: calc(48% - 8px);
-            padding: 14px 8px; /* Adjusted padding for better height */
-            background-color: #007bff; /* Blue color */
-            color: #ffffff;
-            border: none;
-            border-radius: 8px; /* Increased border radius for a softer look */
-            cursor: pointer;
-            margin-bottom: 8px;
-            font-size: small; /* Adjusted font size */
-        }
+button {
+    flex-basis: calc(48% - 8px);
+    padding: 14px 8px;
+    background-color: #6a737d; /* Battleship Gray */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    font-size: small;
+}
 
-        button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
+button:hover {
+    background-color: #495057; /* Darker Battleship Gray on hover */
+}
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+h2 {
+    text-align: center;
+    color: #333;
+}
 
-        h1,
-        p {
-            text-align: center;
-            font-size: medium;
-        }
+h1,
+p {
+    text-align: center;
+    font-size: medium;
+}
 
-        .saved-lists {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            padding: 20px;
-            border: 1px solid #dcdcdc;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow-y: auto;
-        }
+.more-info {
+    display: none;
+}
 
-        .saved-lists select,
-        .saved-lists button {
-            padding: 14px 8px; /* Adjusted padding for better height */
-            border: 1px solid #dcdcdc;
-            border-radius: 8px; /* Increased border radius for a softer look */
-            margin-bottom: 8px;
-            width: 100%;
-            font-size: small; /* Adjusted font size */
-        }
-
-        .saved-lists button {
-            background-color: #007bff; /* Blue color */
-            color: #ffffff;
-            cursor: pointer;
-        }
-
-        .saved-lists button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        .more-info {
-            display: none;
-        }
-
-        .show-info {
-            display: block;
-        }
+.show-info {
+    display: block;
+}
 
     </style>
 </head>
