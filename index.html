@@ -162,6 +162,18 @@
         <select id="savedLists"></select>
         <button onclick="loadSavedList()">Carregar Lista</button>
     </div>
+        <button onclick="toggleMoreInfo()">Mais Informações</button>
+    <div class="more-info" id="moreInfo">
+        <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
+        <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
+        <p><a href="tutorial.html">Aprenda a adicionar este site em seu celular como um aplicativo.</a></p>
+    </div>
+    <script>
+        function toggleMoreInfo() {
+            var moreInfoDiv = document.getElementById("moreInfo");
+            moreInfoDiv.classList.toggle("show-info");
+        }
+    </script>
     <script>
                   function addTask() {
         var taskInput = document.getElementById("taskInput");
