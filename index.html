@@ -26,6 +26,16 @@
             box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
         }
 
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container > * {
+            margin-bottom: 10px;
+        }
+
         .parent {
             display: flex;
             flex-direction: column;
@@ -102,12 +112,8 @@
 </head>
 <body>
     <div class="bar">
-        <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
-    </div>
-    <div class="parent">
-        <div class="div1">
-            <h2 style="color: #333;">Para Fazer</h2>
-            <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
+        <div class="header-container">
+            <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
             <div class="button-container">
                 <button onclick="addTask()">Adicionar tarefa</button>
                 <button onclick="onManualSave()">Salvar Manualmente</button>
@@ -115,6 +121,12 @@
                 <button onclick="onRemoveUndoneTasks()">Remover Tarefas Não Concluídas</button>
                 <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
             </div>
+        </div>
+    </div>
+    <div class="parent">
+        <div class="div1">
+            <h2 style="color: #333;">Para Fazer</h2>
+            <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
             <ul id="todoList" class="task-list"></ul>
         </div>
         <div class="div2">
