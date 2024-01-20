@@ -107,14 +107,8 @@
             text-align: center;
         }
 
-        .saved-lists select {
-            padding: 8px;
-            border: 1px solid #dcdcdc;
-            border-radius: 5px;
-            margin-right: 8px;
-        }
-
-        .saved-lists input {
+        .saved-lists select,
+        .saved-lists button {
             padding: 8px;
             border: 1px solid #dcdcdc;
             border-radius: 5px;
@@ -122,11 +116,8 @@
         }
 
         .saved-lists button {
-            padding: 8px;
             background-color: #007bff;
             color: #ffffff;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
 
@@ -159,8 +150,6 @@
             <button onclick="completeSelectedTasks()">Concluir Selecionadas</button>
             <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
             <button onclick="onRemoveIncorrectTasks()">Remover Tarefas Incorretas</button>
-        </div>
-        <div class="button-container">
             <button onclick="onSaveList()">Salvar Lista de Tarefas</button>
             <button onclick="loadSavedList()">Carregar Lista</button>
         </div>
@@ -175,7 +164,7 @@
         <button onclick="loadSavedList()">Carregar Lista</button>
     </div>
     <script>
-        function addTask() {
+              function addTask() {
             var taskInput = document.getElementById("taskInput");
             var todoList = document.getElementById("todoList");
 
