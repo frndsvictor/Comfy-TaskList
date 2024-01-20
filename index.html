@@ -76,6 +76,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-bottom: 10px;
         }
 
         button:hover {
@@ -86,7 +87,7 @@
             text-align: center;
         }
 
-        h1,p {
+        h1, p {
             text-align: center;
             font-size: medium;
         }
@@ -101,105 +102,110 @@
             <h2 style="color: #333;">Para Fazer</h2>
             <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
             <button onclick="addTask()">Adicionar tarefa</button>
+            <button onclick="onManualSave()">Salvar Manualmente</button>
+            <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
+            <button onclick="onRemoveUndoneTasks()">Remover Tarefas Não Concluídas</button>
             <ul id="todoList" class="task-list"></ul>
         </div>
         <div class="div2">
             <h2 style="color: #333;">Tarefas Concluídas</h2>
             <ul id="doneList" class="task-list"></ul>
         </div>
-        <button onclick="onManualSave()">Manual Save</button>
-<button onclick="onRemoveDoneTasks()">Remove Completed Tasks</button>
     </div>
 
     <script>
-    function addTask() {
-        var taskInput = document.getElementById("taskInput");
-        var todoList = document.getElementById("todoList");
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var todoList = document.getElementById("todoList");
 
-        if (taskInput.value.trim() !== "") {
-            var taskItem = document.createElement("li");
-            taskItem.className = "task";
+            if (taskInput.value.trim() !== "") {
+                var taskItem = document.createElement("li");
+                taskItem.className = "task";
+
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "task-checkbox";
+                checkbox.onclick = function() {
+                    moveTaskToDone(taskItem);
+                };
+
+                var taskText = document.createTextNode(taskInput.value);
+
+                taskItem.appendChild(checkbox);
+                taskItem.appendChild(taskText);
+                todoList.appendChild(taskItem);
+
+                taskInput.value = "";
+            }
+        }
+
+        function moveTaskToDone(taskItem) {
+            var doneList = document.getElementById("doneList");
 
             var checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.className = "task-checkbox";
             checkbox.onclick = function() {
-                moveTaskToDone(taskItem);
+                moveTaskToTodo(taskItem);
             };
 
-            var taskText = document.createTextNode(taskInput.value);
+            var clonedTaskItem = taskItem.cloneNode(true);
+            clonedTaskItem.removeChild(clonedTaskItem.firstChild);
+            clonedTaskItem.insertBefore(checkbox, clonedTaskItem.firstChild);
 
-            taskItem.appendChild(checkbox);
-            taskItem.appendChild(taskText);
-            todoList.appendChild(taskItem);
+            doneList.appendChild(clonedTaskItem);
 
-            taskInput.value = "";
+            var todoList = document.getElementById("todoList");
+            todoList.removeChild(taskItem);
         }
-    }
 
-    function moveTaskToDone(taskItem) {
-        var doneList = document.getElementById("doneList");
+        function moveTaskToTodo(taskItem) {
+            var todoList = document.getElementById("todoList");
+            taskItem.removeChild(taskItem.firstChild);
+            todoList.appendChild(taskItem);
+        }
 
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.className = "task-checkbox";
-        checkbox.onclick = function() {
-            moveTaskToTodo(taskItem);
-        };
+        function saveTasks() {
+            var todoList = document.getElementById("todoList");
+            var doneList = document.getElementById("doneList");
 
-        var clonedTaskItem = taskItem.cloneNode(true);
-        clonedTaskItem.removeChild(clonedTaskItem.firstChild);
-        clonedTaskItem.insertBefore(checkbox, clonedTaskItem.firstChild);
+            localStorage.setItem("todoTasks", todoList.innerHTML);
+            localStorage.setItem("doneTasks", doneList.innerHTML);
+        }
 
-        doneList.appendChild(clonedTaskItem);
+        function loadTasks() {
+            var todoList = document.getElementById("todoList");
+            var doneList = document.getElementById("doneList");
 
-        var todoList = document.getElementById("todoList");
-        todoList.removeChild(taskItem);
-    }
+            todoList.innerHTML = localStorage.getItem("todoTasks") || "";
+            doneList.innerHTML = localStorage.getItem("doneTasks") || "";
+        }
 
-    function moveTaskToTodo(taskItem) {
-        var todoList = document.getElementById("todoList");
-        taskItem.removeChild(taskItem.firstChild);
-        todoList.appendChild(taskItem);
-    }
+        function onManualSave() {
+            saveTasks();
+            alert("Tarefas salvas com sucesso!");
+        }
 
-    function saveTasks() {
-        var todoList = document.getElementById("todoList");
-        var doneList = document.getElementById("doneList");
+        function onRemoveDoneTasks() {
+            var doneList = document.getElementById("doneList");
+            doneList.innerHTML = ""; // Remove all completed tasks
+            saveTasks();
+        }
 
-        localStorage.setItem("todoTasks", todoList.innerHTML);
-        localStorage.setItem("doneTasks", doneList.innerHTML);
-    }
+        function onRemoveUndoneTasks() {
+            var todoList = document.getElementById("todoList");
+            todoList.innerHTML = ""; // Remove all undone tasks
+            saveTasks();
+        }
 
-    function loadTasks() {
-        var todoList = document.getElementById("todoList");
-        var doneList = document.getElementById("doneList");
+        function onUnload() {
+            // Optionally save tasks on page unload if needed
+            // saveTasks();
+        }
 
-        todoList.innerHTML = localStorage.getItem("todoTasks") || "";
-        doneList.innerHTML = localStorage.getItem("doneTasks") || "";
-    }
+        window.addEventListener('unload', onUnload);
 
-    function onManualSave() {
-        saveTasks();
-        alert("Tasks saved successfully!");
-    }
-
-    function onRemoveDoneTasks() {
-        var doneList = document.getElementById("doneList");
-        doneList.innerHTML = ""; // Remove all completed tasks
-        saveTasks();
-    }
-
-    function onUnload() {
-        // Optionally save tasks on page unload if needed
-        // saveTasks();
-    }
-
-    window.addEventListener('unload', onUnload);
-
-    loadTasks();
-</script>
-
+        loadTasks();
     </script>
     <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
     <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
