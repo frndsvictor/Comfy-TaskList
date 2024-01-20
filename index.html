@@ -377,17 +377,19 @@
 
        function toggleThemes() {
     console.log("Toggling themes!");
-    document.body.classList.add("theme-transition");
-    document.body.classList.toggle("theme1");
-    document.body.classList.toggle("theme2");
-    document.body.classList.toggle("theme3");
-    document.body.classList.toggle("theme4");
-    document.body.classList.toggle("theme5");
-    document.body.classList.toggle("theme6");
-    document.body.classList.toggle("theme7");
-    setTimeout(() => document.body.classList.remove("theme-transition"), 500);
-}
 
+    const themes = ["theme1", "theme2", "theme3", "theme4", "theme5", "theme6", "theme7"];
+    let currentThemeIndex = themes.findIndex(theme => document.body.classList.contains(theme));
+
+    // Remove the current theme
+    document.body.classList.remove(themes[currentThemeIndex]);
+
+    // Move to the next theme
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+
+    // Apply the new theme
+    document.body.classList.add(themes[currentThemeIndex]);
+}
         window.addEventListener('unload', onUnload);
 
         loadTasks();
