@@ -26,16 +26,6 @@
             box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .header-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header-container > * {
-            margin-bottom: 10px;
-        }
-
         .parent {
             display: flex;
             flex-direction: column;
@@ -108,22 +98,44 @@
             text-align: center;
             font-size: medium;
         }
+
+        .saved-lists {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .saved-lists select {
+            padding: 8px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            margin-right: 8px;
+        }
+
+        .saved-lists button {
+            padding: 8px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .saved-lists button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="bar">
-        <div class="header-container">
-            <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
-            <div class="button-container">
-                <button onclick="addTask()">Adicionar tarefa</button>
-                <button onclick="onManualSave()">Salvar Manualmente</button>
-                <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
-                <button onclick="onRemoveUndoneTasks()">Remover Tarefas Não Concluídas</button>
-                <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
-            </div>
-        </div>
+        <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
     </div>
     <div class="parent">
+        <div class="button-container">
+            <button onclick="addTask()">Adicionar tarefa</button>
+            <button onclick="onSaveList()">Salvar Lista</button>
+            <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
+            <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
+        </div>
         <div class="div1">
             <h2 style="color: #333;">Para Fazer</h2>
             <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
@@ -133,6 +145,12 @@
             <h2 style="color: #333;">Tarefas Concluídas</h2>
             <ul id="doneList" class="task-list"></ul>
         </div>
+    </div>
+    <div class="saved-lists">
+        <h2>Listas Salvas</h2>
+        <select id="savedLists"></select>
+        <input type="text" id="listName" placeholder="Digite o nome da lista">
+        <button onclick="loadSavedList()">Carregar Lista</button>
     </div>
 <script>
         function addTask() {
@@ -174,12 +192,6 @@
             todoList.removeChild(taskItem);
         }
 
-        function moveTaskToTodo(taskItem) {
-            var todoList = document.getElementById("todoList");
-            taskItem.removeChild(taskItem.firstChild);
-            todoList.appendChild(taskItem);
-        }
-
         function completeSelectedTasks() {
             var todoList = document.getElementById("todoList");
             var doneList = document.getElementById("doneList");
@@ -208,20 +220,53 @@
             doneList.innerHTML = localStorage.getItem("doneTasks") || "";
         }
 
-        function onManualSave() {
+        function onSaveList() {
+            var listName = prompt("Digite o nome da lista:");
+            if (listName) {
+                saveList(listName);
+            }
+        }
+
+        function saveList(listName) {
+            var savedLists = JSON.parse(localStorage.getItem("savedLists")) || [];
+            savedLists.push(listName);
+            localStorage.setItem("savedLists", JSON.stringify(savedLists));
             saveTasks();
-            alert("Tarefas salvas com sucesso!");
+            loadSavedLists();
+        }
+
+        function loadSavedLists() {
+            var savedLists = JSON.parse(localStorage.getItem("savedLists")) || [];
+            var savedListsSelect = document.getElementById("savedLists");
+
+            savedListsSelect.innerHTML = "";
+            savedLists.forEach(function(listName) {
+                var option = document.createElement("option");
+                option.value = listName;
+                option.textContent = listName;
+                savedListsSelect.appendChild(option);
+            });
+        }
+
+        function loadSavedList() {
+            var savedListsSelect = document.getElementById("savedLists");
+            var selectedListName = savedListsSelect.value;
+
+            if (selectedListName) {
+                var savedList = JSON.parse(localStorage.getItem(selectedListName));
+                if (savedList) {
+                    var todoList = document.getElementById("todoList");
+                    var doneList = document.getElementById("doneList");
+
+                    todoList.innerHTML = savedList.todo || "";
+                    doneList.innerHTML = savedList.done || "";
+                }
+            }
         }
 
         function onRemoveDoneTasks() {
             var doneList = document.getElementById("doneList");
             doneList.innerHTML = ""; // Remove all completed tasks
-            saveTasks();
-        }
-
-        function onRemoveUndoneTasks() {
-            var todoList = document.getElementById("todoList");
-            todoList.innerHTML = ""; // Remove all undone tasks
             saveTasks();
         }
 
@@ -233,6 +278,7 @@
         window.addEventListener('unload', onUnload);
 
         loadTasks();
+        loadSavedLists();
     </script>
     <h1>Esta ferramenta tem como intuito auxiliar pessoas no TEA a se organizarem nas tarefas do dia a dia.</h1>
     <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
