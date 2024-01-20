@@ -150,8 +150,6 @@
             <button onclick="completeSelectedTasks()">Concluir Selecionadas</button>
             <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
             <button onclick="onRemoveIncorrectTasks()">Remover Tarefas Incorretas</button>
-            <button onclick="onSaveList()">Salvar Lista de Tarefas</button>
-            <button onclick="loadSavedList()">Carregar Lista</button>
         </div>
         <div class="div2">
             <h2 style="color: #333;">Tarefas Concluídas</h2>
@@ -160,11 +158,14 @@
     </div>
     <div class="saved-lists">
         <h2>Listas Salvas</h2>
-        <select id="savedLists"></select>
-        <button onclick="loadSavedList()">Carregar Lista</button>
+        <div class="button-container">
+            <select id="savedLists"></select>
+            <button onclick="loadSavedList()">Carregar Lista</button>
+            <button onclick="onSaveList()">Salvar Lista de Tarefas</button>
+        </div>
     </div>
     <script>
-              function addTask() {
+        function addTask() {
             var taskInput = document.getElementById("taskInput");
             var todoList = document.getElementById("todoList");
 
