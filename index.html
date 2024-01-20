@@ -105,6 +105,9 @@
         .saved-lists {
             margin-top: 20px;
             text-align: center;
+            background-color: #ffffff; /* Added white background */
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .saved-lists select,
@@ -161,8 +164,8 @@
         <h2>Listas Salvas</h2>
         <div class="button-container">
             <select id="savedLists"></select>
-            <button onclick="loadSavedList()">Carregar Lista</button>
             <button onclick="onSaveList()">Salvar Lista de Tarefas</button>
+            <button onclick="loadSavedList()">Carregar Lista</button>
         </div>
     </div>
     <script>
