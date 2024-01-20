@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +34,8 @@
             padding: 10px;
         }
 
-        .div1, .div2 {
+        .div1,
+        .div2 {
             width: 100%;
             box-sizing: border-box;
             background-color: #ffffff;
@@ -94,7 +96,8 @@
             text-align: center;
         }
 
-        h1, p {
+        h1,
+        p {
             text-align: center;
             font-size: medium;
         }
@@ -132,21 +135,22 @@
         }
     </style>
 </head>
+
 <body>
     <div class="bar">
         <h1>Lista de Afazeres ( ˶ˆ꒳ˆ˵ )</h1>
     </div>
     <div class="parent">
-        <div class="button-container">
-            <button onclick="addTask()">Adicionar tarefa</button>
-            <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
-            <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
-            <button onclick="onSaveList()">Salvar Lista de Tarefas</button>
-        </div>
         <div class="div1">
             <h2 style="color: #333;">Para Fazer</h2>
             <input type="text" id="taskInput" class="task-input" placeholder="Insira uma tarefa aqui">
             <ul id="todoList" class="task-list"></ul>
+            <div class="button-container">
+                <button onclick="addTask()">Adicionar tarefa</button>
+                <button onclick="completeSelectedTasks()">Concluir Tarefas Selecionadas</button>
+                <button onclick="onRemoveDoneTasks()">Remover Tarefas Concluídas</button>
+                <button onclick="onSaveList()">Salvar Lista de Tarefas</button>
+            </div>
         </div>
         <div class="div2">
             <h2 style="color: #333;">Tarefas Concluídas</h2>
@@ -158,8 +162,8 @@
         <select id="savedLists"></select>
         <button onclick="loadSavedList()">Carregar Lista</button>
     </div>
-<script>
-           function addTask() {
+    <script>
+               function addTask() {
         var taskInput = document.getElementById("taskInput");
         var todoList = document.getElementById("todoList");
 
@@ -291,4 +295,5 @@
     <p>Para dúvidas e sugestões, entrar em contato com kyioshin133@icloud.com via e-mail.</p>
     <p><a href="tutorial.html">Aprenda a adicionar este site em seu celular como um aplicativo.</a></p>
 </body>
+
 </html>
